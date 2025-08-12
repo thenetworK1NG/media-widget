@@ -62,8 +62,25 @@
         </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="widget.js"></script>
+<style>
+    body {
+        background: transparent;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .widget-container {
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        border-radius: 16px;
+        background: #181818;
+        padding: 2rem 1.5rem;
+        min-width: 320px;
+        max-width: 350px;
+        margin: auto;
+        position: relative;
+        z-index: 10;
+    }
+</style>
 </body>
-    <div id="widget-container">
-        <!-- Widget content here -->
-    </div>
-    <button id="install-btn" style="display:none;position:fixed;bottom:20px;right:20px;z-index:1000;">Install App</button>
