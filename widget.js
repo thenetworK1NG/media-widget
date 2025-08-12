@@ -1,3 +1,23 @@
+// PWA Install button logic
+let deferredPrompt;
+const installBtn = document.getElementById('install-btn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'inline-block';
+});
+
+installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            installBtn.style.display = 'none';
+        }
+        deferredPrompt = null;
+    }
+});
 // Basic Spotify widget logic, similar to your main app but with widget-specific IDs
 const clientId = 'd91f367c3a62465db529d844a632846b';
 const redirectUri = window.location.origin + window.location.pathname;

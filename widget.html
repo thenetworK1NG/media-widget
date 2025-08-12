@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Widget</title>
+    <link rel="stylesheet" href="widget.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1db954">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <div id="spotify-widget" class="widget-container">
+        <header class="widget-header">
+            <span>Spotify Player</span>
+            <button id="widget-close" title="Close">&times;</button>
+        </header>
+        <main id="widget-player-main" style="display:none;">
+            <section class="player-area">
+                <div class="album-art-wrapper">
+                    <img id="widget-album-art" src="" alt="Album Art" class="album-art-img" />
+                </div>
+                <div class="track-info">
+                    <span id="widget-track-name-main">Track Name</span>
+                    <span id="widget-artist-name-main">Artist Name</span>
+                </div>
+                <div class="player-controls">
+                    <button class="player-btn" id="widget-repeat-btn" title="Repeat"><i class="fa fa-repeat"></i></button>
+                    <button class="player-btn" id="widget-prev-btn" title="Previous"><i class="fa fa-fast-backward"></i></button>
+                    <button class="player-btn play-btn" id="widget-play-btn" title="Play"><i class="fa fa-play"></i></button>
+                    <button class="player-btn" id="widget-next-btn" title="Next"><i class="fa fa-fast-forward"></i></button>
+                    <button class="player-btn" id="widget-shuffle-btn" title="Shuffle"><i class="fa fa-random"></i></button>
+                </div>
+            </section>
+        </main>
+        <footer class="widget-footer">
+            <div class="title">
+                <span id="widget-track-name">Track Name</span> - <span id="widget-artist-name">Artist Name</span>
+            </div>
+            <div class="time-tracker">
+                <span id="widget-current-time">0:00</span> / <span id="widget-duration">0:00</span>
+            </div>
+        </footer>
+        <div class="search-bar">
+            <input type="text" id="widget-song-search-input" placeholder="Search for a song...">
+            <button id="widget-song-search-btn">Search</button>
+        </div>
+        <div class="tracks">
+            <h3>Tracks</h3>
+            <ul id="widget-track-list"></ul>
+        </div>
+        <button id="widget-login-btn" style="margin-top:1rem;">Login with Spotify</button>
+    <button id="install-btn" style="margin:1rem;display:none;background:#2196f3;color:#fff;padding:0.5rem 1rem;border:none;border-radius:6px;cursor:pointer;">Install App</button>
+    </div>
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('service-worker.js');
+                });
+            }
+        </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="widget.js"></script>
+</body>
+</html>
