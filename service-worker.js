@@ -1,22 +1,23 @@
-self.addEventListener('install', event => {
-  self.skipWaiting();
+// Basic offline-first service worker for PWA
+self.addEventListener('install', function(e) {
+  e.waitUntil(
+    caches.open('widget-cache').then(function(cache) {
+      return cache.addAll([
+        './widget.html',
+        './widget.js',
+        './widget.css',
+        './manifest.json',
+        './icon-192.png',
+        './icon-512.png'
+      ]);
+    })
+  );
 });
 
-self.addEventListener('activate', event => {
-  event.waitUntil(self.clients.claim());
-});
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.open('spotify-widget-cache').then(cache => {
-      return cache.match(event.request).then(response => {
-        return response || fetch(event.request).then(networkResponse => {
-          if (event.request.method === 'GET' && networkResponse.ok) {
-            cache.put(event.request, networkResponse.clone());
-          }
-          return networkResponse;
-        });
-      });
+self.addEventListener('fetch', function(e) {
+  e.respondWith(
+    caches.match(e.request).then(function(response) {
+      return response || fetch(e.request);
     })
   );
 });

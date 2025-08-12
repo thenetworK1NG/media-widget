@@ -189,8 +189,12 @@ let offsetX = 0, offsetY = 0, isDragging = false;
 
 header.addEventListener('mousedown', function(e) {
     isDragging = true;
-    offsetX = e.clientX - widget.offsetLeft;
-    offsetY = e.clientY - widget.offsetTop;
+    // Use getBoundingClientRect for fixed positioning
+    const rect = widget.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+    widget.style.position = 'fixed';
+    widget.style.zIndex = 9999;
     document.body.style.userSelect = 'none';
 });
 

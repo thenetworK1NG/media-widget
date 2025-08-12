@@ -5,8 +5,8 @@ body {
 }
 .widget-container {
     position: fixed;
-    top: 50px;
-    left: 50px;
+    top: 100px;
+    left: 100px;
     width: 340px;
     background: #181818;
     color: #fff;
